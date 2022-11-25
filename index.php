@@ -11,24 +11,33 @@
 <body>
 
     <?php
-/* Funct_ahoj*/
-function pozdrav($value) {
-    
-    echo ('<pre>');
-    print_r($value);
-    echo ('</pre>');
-    
-}
-$value = "Ahoj";
+    /* Funct_ahoj*/
+    function pozdrav($value)
+    {
+        
+        echo ('<pre>');
+        print_r($value);
+        echo ('</pre>');
+    };
 
+
+    $value = "Ahoj";
+    
     pozdrav($value);
 
-   
+
+
+    function formater($dt)
+    {
+        $date = new DateTimeImmutable();
+        $dtime = $date->format(' d-m-Y (H:i:s)');
+        echo  "Datum " . $dtime;
+        
+    };
     
-    
-    $date = new DateTimeImmutable();
-    $dtime = $date->format(' d-m-Y (H:i:s)');
-     echo  "Datum " . $dtime ;
+
+    formater($value);
+
 
 
     $myfile = fopen("Date-time.dat", "w") or die("Unable to open file!");
@@ -42,15 +51,12 @@ $value = "Ahoj";
     $file = file_get_contents("Date-time.dat", true);
     echo ('<pre>') . $file . ('</pre>');
 
-    // file_get_contents($dtime);
-    
-    // $homepage = file_get_contents('localhost/akademia_PhP/');
-    // echo $homepage
 
     ?>
+
 </body>
 
 
 
 
-    </html>
+</html>
