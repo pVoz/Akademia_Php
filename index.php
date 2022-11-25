@@ -18,11 +18,23 @@
     echo ('<pre>');
     print_r($value);
     echo ('</pre>');
-
-
-
+    
+    
     $date = new DateTimeImmutable();
-    echo "Datum " . $date->format('d-m-Y  (H:i:s)');
+    $dtime = $date->format('d-m-Y  (H:i:s)');
+        echo  "Datum " . $dtime ;
+
+
+    // $dtimes = [$date];   
+
+    $myfile = fopen("Date-time.dat", "a+") or die("Unable to open file!");
+    // $txt = "Jane Doe\n";
+
+// $msg = "". $date . "";
+
+    fwrite($myfile, $dtime);
+    fclose($myfile);
+
 
 
     ?>
