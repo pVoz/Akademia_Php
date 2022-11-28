@@ -17,13 +17,25 @@
     
     greetings("Ahoj");
 
-    $date_time=formater();
+    formater();
 
-    fileSave($date_time);
+    fileSave();
+
 
     fileGet();
+   
 
-
+    // function test($data = null)
+    // {
+    //     if ($data){
+    //         echo $data;
+    //     }
+    //     else {
+    //         echo "niesu data";
+    //     }
+    // };
+    
+    // test("data");
 ?>
 
 </body>
