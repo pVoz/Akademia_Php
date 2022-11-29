@@ -62,7 +62,7 @@ function fileSave($stime, $time, $name)
 
 
     $startSchool = strtotime("08:00:00");
-    $message = compareTime($stime, $startSchool, "Študent meškal !!");
+    $message = compareTime($stime, $startSchool, '<h2>Študent meškal !!</h2>');
     $myfile = fopen("Date-time.dat", "a+") or die("Unable to open file!");
 
     
