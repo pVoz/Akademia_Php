@@ -15,27 +15,18 @@
    
     include 'helper.php';
     
+    
     greetings("Ahoj");
-
+    
+    notPossible();
+    
     formater();
-
+ 
     fileSave();
 
 
     fileGet();
-   
 
-    // function test($data = null)
-    // {
-    //     if ($data){
-    //         echo $data;
-    //     }
-    //     else {
-    //         echo "niesu data";
-    //     }
-    // };
-    
-    // test("data");
 ?>
 
 </body>

@@ -13,16 +13,13 @@ function greetings($value)
 function formater()
 {
     $date = new DateTimeImmutable();
-    $dtime = $date->format(' d-m-Y H:i:s');
-
-
+    $dtime = $date->format(' d.m.Y H:i:s');
     echo  "Datum " . $dtime;
     return $dtime;
 };
 
 function compareTime($time1, $time2, $msg)
 {
-
 
     if ($time1 > $time2) {
         return $msg;
@@ -32,6 +29,20 @@ function compareTime($time1, $time2, $msg)
 
     return $msg;
 };
+
+// strtotime("čas") => premeni string na čas 
+
+function notPossible()
+{
+    $time = new DateTimeImmutable();
+    $ddtime = ($time->format('H:i:s'));
+    if ($ddtime >= strtotime("20:00:00")) {
+        
+        die("Nemožný neskorý príchod ");
+    } ;
+
+}
+
 
 
 
@@ -44,8 +55,10 @@ function fileSave()
     $message = compareTime($stime, $startSchool, "Študent meškal !!");
     $myfile = fopen("Date-time.dat", "a+") or die("Unable to open file!");
 
+
     fwrite($myfile, $time->format('d.m.Y H:i:s') . " " . $message . PHP_EOL);
     fclose($myfile);
+  
 };
 
 function fileGet()
