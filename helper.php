@@ -16,7 +16,7 @@ function greetings($value)
 
 function formater($dtime)
 {
-  
+
     echo  "Datum " . $dtime;
     return $dtime;
 };
@@ -39,27 +39,35 @@ function notPossible($time)
 {
     $ddtime = ($time->format('H:i:s'));
     if ($ddtime >= strtotime("20:00:00")) {
-        
-        die("Nemožný neskorý príchod ");
-    } ;
 
+        die("Nemožný neskorý príchod ");
+    };
 }
 
-
-
-
-function fileSave($stime,$time)
+function withoutName($name)
 {
 
-    
+    if (!$name) {
+        echo ("Vyplň prosím meno študenta ");
+        die();
+    }
+};
+
+
+
+
+
+function fileSave($stime, $time, $name)
+{
+
+
     $startSchool = strtotime("08:00:00");
     $message = compareTime($stime, $startSchool, "Študent meškal !!");
     $myfile = fopen("Date-time.dat", "a+") or die("Unable to open file!");
 
-
-    fwrite($myfile, $time->format('d.m.Y H:i:s') . " " . $message . PHP_EOL);
+    
+    fwrite($myfile, $name . "  prišiel o  " . $time->format('d.m.Y H:i:s') . " " . $message  . PHP_EOL);
     fclose($myfile);
-  
 };
 
 function fileGet()
