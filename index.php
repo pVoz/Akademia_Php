@@ -25,7 +25,7 @@
     include 'helper.php';
 
    
-$_SERVER['SERVER_NAME'] . $name;
+    $_SERVER['SERVER_NAME'] . $name;
    
     greetings("Ahoj");
     
