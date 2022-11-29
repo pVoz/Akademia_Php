@@ -1,4 +1,8 @@
 <?php
+
+include 'variable.php';
+
+
 /* Funct_ahoj*/
 function greetings($value)
 {
@@ -10,10 +14,9 @@ function greetings($value)
 
 
 
-function formater()
+function formater($dtime)
 {
-    $date = new DateTimeImmutable();
-    $dtime = $date->format(' d.m.Y H:i:s');
+  
     echo  "Datum " . $dtime;
     return $dtime;
 };
@@ -32,9 +35,8 @@ function compareTime($time1, $time2, $msg)
 
 // strtotime("čas") => premeni string na čas 
 
-function notPossible()
+function notPossible($time)
 {
-    $time = new DateTimeImmutable();
     $ddtime = ($time->format('H:i:s'));
     if ($ddtime >= strtotime("20:00:00")) {
         
@@ -46,11 +48,10 @@ function notPossible()
 
 
 
-function fileSave()
+function fileSave($stime,$time)
 {
 
-    $time = new DateTimeImmutable();
-    $stime = strtotime($time->format(' H:i:s'));
+    
     $startSchool = strtotime("08:00:00");
     $message = compareTime($stime, $startSchool, "Študent meškal !!");
     $myfile = fopen("Date-time.dat", "a+") or die("Unable to open file!");

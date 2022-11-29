@@ -13,16 +13,17 @@
     
 <?php
    
+    
+    include 'variable.php'; 
     include 'helper.php';
-    
-    
+
     greetings("Ahoj");
     
-    notPossible();
+    notPossible($date);
     
-    formater();
+    formater($dtime);
  
-    fileSave();
+    fileSave($stime,$date);
 
 
     fileGet();
