@@ -21,14 +21,13 @@
 
 <?php   
 
-    include 'variable.php'; 
     include 'helper.php';
 
    
    
     greetings("Ahoj");
     
-    withoutName($name);
+    validateName($name);
 
     notPossible($date);
     

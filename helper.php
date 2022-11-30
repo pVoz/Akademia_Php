@@ -1,7 +1,9 @@
 <?php
 
-include 'variable.php';
-
+$date = new DateTimeImmutable();
+$dtime = $date->format(' d.m.Y H:i:s');
+$stime = strtotime($date->format(' H:i:s'));
+$name =  $_POST["name"];
 
 /* Funct_ahoj*/
 function greetings($value)
@@ -26,11 +28,9 @@ function compareTime($time1, $time2, $msg)
 
     if ($time1 > $time2) {
         return $msg;
-    } else {
-        $msg = " ";
-    };
+    } ;
 
-    return $msg;
+   return $msg = " ";
 };
 
 // strtotime("čas") => premeni string na čas 
@@ -44,7 +44,7 @@ function notPossible($time)
     };
 }
 
-function withoutName($name)
+function validateName($name)
 {
 
     if (!$name) {
