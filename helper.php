@@ -3,7 +3,7 @@
 $date = new DateTimeImmutable();
 $dtime = $date->format(' d.m.Y H:i:s');
 $stime = strtotime($date->format(' H:i:s'));
-$name =  $_POST["name"];
+// $name =  $_POST["name"];
 
 /* Funct_ahoj*/
 function greetings($value)
@@ -15,6 +15,18 @@ function greetings($value)
 };
 
 
+// $_POST = je na formulár
+// $_GET = je na url 
+
+
+
+if ($_POST) {
+    $name = $_POST["name"];
+};
+
+if ($_GET) {
+    $name = $_GET["name"];
+};
 
 function formater($dtime)
 {
@@ -28,12 +40,12 @@ function compareTime($time1, $time2, $msg)
 
     if ($time1 > $time2) {
         return $msg;
-    } ;
+    };
 
-   return $msg = " ";
+    return $msg = " ";
 };
 
-// strtotime("čas") => premeni string na čas 
+// strtotime("čas") => premení string na čas 
 
 function notPossible($time)
 {
@@ -57,6 +69,7 @@ function validateName($name)
 
 
 
+
 function fileSave($stime, $time, $name)
 {
 
@@ -65,7 +78,7 @@ function fileSave($stime, $time, $name)
     $message = compareTime($stime, $startSchool, '<h2>Študent meškal !!</h2>');
     $myfile = fopen("Date-time.dat", "a+") or die("Unable to open file!");
 
-    
+
     fwrite($myfile, $name . "  prišiel o  " . $time->format('d.m.Y H:i:s') . " " . $message  . PHP_EOL);
     fclose($myfile);
 };

@@ -10,35 +10,39 @@
 
 
 <body>
-    
-<form action="index.php" method="post">
-    Meno študenta : <input type="text" name="name"><br>
-    <input type="submit">
+
+    <form action="index.php" method="post">
+        Meno študenta : <input type="text" name="name"><br>
+        <input type="submit">
+
+
+
     </form>
-   
+
+    </form>
 
 
 
-<?php   
+
+    <?php
 
     include 'helper.php';
 
-   
-   
+
     greetings("Ahoj");
-    
+
     validateName($name);
 
     notPossible($date);
-    
+
     formater($dtime);
- 
-    fileSave($stime,$date,$name);
+
+    fileSave($stime, $date, $name);
 
 
     fileGet();
 
-?>
+    ?>
 
 </body>
 
