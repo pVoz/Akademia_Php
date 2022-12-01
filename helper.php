@@ -69,11 +69,30 @@ if (!empty($_POST)) {
     $student = fopen("studenti.json", "a+");
 
     $name = (object)[
-        'name' => $_POST['name']
+        'name' => $_POST['name'],
     ];
+
+    $names = json_encode($_POST);
+    // $namess = json_decode($names,true);
+    // print_r($namess);u
     fwrite($student, json_encode($_POST) . PHP_EOL);
-    fclose($student);
 };
+$names = file('studenti.json');
+// To check the number of lines
+echo count($names) . '<br>';
+
+// print_r($names);
+// print_r(json_decode($names[1]));
+// echo "<pre>";
+// print_r($names);
+// echo "</pre>";
+foreach ($names as $key => $name) {
+    // print_r(json_decode($name)->name);
+    print_r(json_decode($name,true));
+    echo ($key);
+    echo  "<br>";
+};
+
 
 
 function fileSave($stime, $time, $name)
