@@ -65,9 +65,14 @@ function validateName($name)
     }
 };
 
-if ( ! empty($_POST))
-{
-    print_r( $_POST );
+if (!empty($_POST)) {
+    $student = fopen("studenti.json", "a+");
+
+    $name = (object)[
+        'name' => $_POST['name']
+    ];
+    fwrite($student, json_encode($_POST) . PHP_EOL);
+    fclose($student);
 };
 
 
@@ -78,13 +83,12 @@ function fileSave($stime, $time, $name)
     $startSchool = strtotime("08:00:00");
     $message = compareTime($stime, $startSchool, '<h2>Študent meškal !!</h2>');
     $myfile = fopen("Date-time.dat", "a+") or die("Unable to open file!");
-    $student = fopen("studenti.json", "a+");
+
 
 
     fwrite($myfile, $name . "  prišiel o  " . $time->format('d.m.Y H:i:s') . " " . $message  . PHP_EOL);
-    fwrite($student,$name . PHP_EOL);
+
     fclose($myfile);
-    fclose($student);
 };
 
 function fileGet()
