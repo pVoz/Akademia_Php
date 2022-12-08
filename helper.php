@@ -93,7 +93,7 @@ function appendStudent($studends_json, $name)
     //create new id
     $new_id  = count($students_decoded) + 1;
     
-    //create new studend
+    //create new student
     $new_student = [
         'id' => $new_id,
         'name' => $name
