@@ -26,7 +26,7 @@
 
     greetings("Ahoj");
 
-
+    saveTime($student_id, $dtime);
 
     validateName($name);
 
@@ -35,7 +35,7 @@
     formater($dtime);
 
     fileSave($stime, $date, $name);
-
+    
 
     fileGet();
 
