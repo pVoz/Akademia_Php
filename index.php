@@ -30,7 +30,9 @@
 
     validateName($name);
 
-    notPossible($date);
+    dieIfArrivalNotPossible($date);
+
+
 
     formater($dtime);
 

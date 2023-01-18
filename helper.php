@@ -2,25 +2,31 @@
 
 $date = new DateTimeImmutable();
 $dtime = $date->format(' d.m.Y H:i:s');
+date_default_timezone_set('America/Los_Angeles');
+
+$script_tz = date_default_timezone_get();
+
 $stime = strtotime($date->format(' H:i:s'));
 
 // $_POST = je na formulár
 // $_GET = je na url 
 
-/* Funct_ahoj*/
+if ($_POST)
+{
+    $name = $_POST["name"];
+};
+
+if ($_GET) 
+{
+    $name = $_GET["name"];
+};
+
 function greetings($value)
 {
 
     echo ('<pre>');
     print_r($value);
     echo ('</pre>');
-};
-if ($_POST) {
-    $name = $_POST["name"];
-};
-
-if ($_GET) {
-    $name = $_GET["name"];
 };
 
 function formater($dtime)
@@ -32,7 +38,8 @@ function formater($dtime)
 function compareTime($time1, $time2, $msg)
 {
 
-    if ($time1 > $time2) {
+    if ($time1 > $time2) 
+    {
         return $msg;
     };
 
@@ -41,7 +48,7 @@ function compareTime($time1, $time2, $msg)
 
 // strtotime("čas") => premení string na čas 
 
-function notPossible($time)
+function dieIfArrivalNotPossible($time)
 {
     $ddtime = ($time->format('H:i:s'));
 
@@ -52,7 +59,8 @@ function notPossible($time)
 
 function validateName($name)
 {
-    if (!$name) {
+    if (!$name) 
+    {
         echo ("Vyplň prosím meno študenta ");
         die();
     }
@@ -73,14 +81,13 @@ function getTime($dtime)
 {
     echo $dtime;
 };
-echo getTime($dtime);
+
 function fileGet()
 {
 
     $file = file_get_contents("Date-time.dat", true);
     echo ('<pre>') . $file . ('</pre>');
 };
-////////////////////////////////////////////////////////
 function pre_r($data)
 {
     
@@ -124,16 +131,16 @@ function showStudents($studends_json)
 
     pre_r($students_decoded);
 }
-if (isset($_POST) && !empty($_POST)) {
+if (isset($_POST) && !empty($_POST))
+{
     appendStudent($students, $_POST['name']);
 }
 
 $students = file_get_contents('students.json');
 showStudents($students);
-/////////////////////////////
-/////////////////////////////
-/////////////////////////////
-function saveTime($id, $time) {
+
+function saveTime($id, $time) 
+{
     $times = json_decode(file_get_contents('times.json'), true);
     $new_time = [
         'id' => $id,
@@ -147,18 +154,13 @@ function saveTime($id, $time) {
 
 ///
 $students = json_decode(file_get_contents('students.json'), true);
-foreach($students as $student) {
+foreach($students as $student) 
+{
     if ($student['name'] === $name) {
         $student_id = $student['id'];
         break;
     }
 }
-/////////
-
-////////////////////
-/////////////////////////////
-/////////////////////////////
-
 
 
 
