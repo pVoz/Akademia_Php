@@ -32,8 +32,6 @@
 
     dieIfArrivalNotPossible($date);
 
-
-
     formater($dtime);
 
     fileSave($stime, $date, $name);

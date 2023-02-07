@@ -144,13 +144,37 @@ function saveTime($id, $time)
     $times = json_decode(file_get_contents('times.json'), true);
     $new_time = [
         'id' => $id,
-        'time' => $time
+        'time' => $time 
     ];
     $times[] = $new_time;
     $times_json = json_encode($times, JSON_PRETTY_PRINT);
     file_put_contents('times.json', $times_json);
 }
 
+
+
+
+
+
+////////////////////////////
+function add_delay_to_json($file) {
+    $data = json_decode(file_get_contents($file), true);
+    $threshold = strtotime('08:00:00');
+  
+    $delayed = array_map(function ($item) use ($threshold) {
+      if (strtotime($item['time']) >= $threshold) {
+        $item['delay'] = 'Meškanie';
+      }
+      return $item;
+    }, $data);
+    
+    return json_encode($delayed);
+};
+  
+////////////////////////////////////////
+
+$delayed_data = add_delay_to_json('times.json');
+file_put_contents('times.json', $delayed_data);
 
 ///
 $students = json_decode(file_get_contents('students.json'), true);
