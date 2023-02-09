@@ -2,7 +2,7 @@
 
 $date = new DateTimeImmutable();
 $dtime = $date->format(' d.m.Y H:i:s');
-date_default_timezone_set('America/Los_Angeles');
+date_default_timezone_set('Europe/Berlin');
 
 $script_tz = date_default_timezone_get();
 
@@ -11,13 +11,11 @@ $stime = strtotime($date->format(' H:i:s'));
 // $_POST = je na formulár
 // $_GET = je na url 
 
-if ($_POST)
-{
+if ($_POST) {
     $name = $_POST["name"];
 };
 
-if ($_GET) 
-{
+if ($_GET) {
     $name = $_GET["name"];
 };
 
@@ -38,8 +36,7 @@ function formater($dtime)
 function compareTime($time1, $time2, $msg)
 {
 
-    if ($time1 > $time2) 
-    {
+    if ($time1 > $time2) {
         return $msg;
     };
 
@@ -59,8 +56,7 @@ function dieIfArrivalNotPossible($time)
 
 function validateName($name)
 {
-    if (!$name) 
-    {
+    if (!$name) {
         echo ("Vyplň prosím meno študenta ");
         die();
     }
@@ -90,7 +86,7 @@ function fileGet()
 };
 function pre_r($data)
 {
-    
+
     echo '<pre>';
     print_r($data);
     echo '<pre>';
@@ -122,8 +118,6 @@ function appendStudent($studends_json, $name)
     file_put_contents('students.json', $students_encoded);
 }
 
-
-
 function showStudents($studends_json)
 {
 
@@ -131,68 +125,46 @@ function showStudents($studends_json)
 
     pre_r($students_decoded);
 }
-if (isset($_POST) && !empty($_POST))
-{
+if (isset($_POST) && !empty($_POST)) {
     appendStudent($students, $_POST['name']);
 }
 
 $students = file_get_contents('students.json');
 showStudents($students);
 
-function saveTime($id, $time) 
+function saveTime($id, $time)
 {
     $times = json_decode(file_get_contents('times.json'), true);
     $new_time = [
         'id' => $id,
-        'time' => $time 
+        'time' => $time
     ];
     $times[] = $new_time;
     $times_json = json_encode($times, JSON_PRETTY_PRINT);
     file_put_contents('times.json', $times_json);
 }
-
-
-
-
-
-
-////////////////////////////
-function add_delay_to_json($file) {
+function add_delay_to_json($file)
+{
     $data = json_decode(file_get_contents($file), true);
     $threshold = strtotime('08:00:00');
-  
+
     $delayed = array_map(function ($item) use ($threshold) {
-      if (strtotime($item['time']) >= $threshold) {
-        $item['delay'] = 'Meškanie';
-      }
-      return $item;
+        if (strtotime($item['time']) >= $threshold) {
+            $item['delay'] = 'Meškanie';
+        }
+        return $item;
     }, $data);
-    
+
     return json_encode($delayed);
 };
-  
-////////////////////////////////////////
-
 $delayed_data = add_delay_to_json('times.json');
 file_put_contents('times.json', $delayed_data);
 
 ///
 $students = json_decode(file_get_contents('students.json'), true);
-foreach($students as $student) 
-{
+foreach ($students as $student) {
     if ($student['name'] === $name) {
         $student_id = $student['id'];
         break;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
