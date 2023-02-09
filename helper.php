@@ -113,7 +113,7 @@ function appendStudent($studends_json, $name)
     //append new studend
     $students_decoded[] = $new_student;
 
-    $students_encoded = json_encode($students_decoded, JSON_PRETTY_PRINT);
+    $students_encoded = json_encode($students_decoded, JSON_PRETTY_PRINT |  JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES );
 
     file_put_contents('students.json', $students_encoded);
 }
@@ -140,13 +140,14 @@ function saveTime($id, $time)
         'time' => $time
     ];
     $times[] = $new_time;
-    $times_json = json_encode($times, JSON_PRETTY_PRINT);
+    $times_json = json_encode($times, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
     file_put_contents('times.json', $times_json);
 }
 function add_delay_to_json($file)
 {
     $data = json_decode(file_get_contents($file), true);
     $threshold = strtotime('08:00:00');
+ 
 
     $delayed = array_map(function ($item) use ($threshold) {
         if (strtotime($item['time']) >= $threshold) {
